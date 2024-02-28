@@ -1,0 +1,42 @@
+@model IEnumerable<GanaSoft.Models.TipoRaza>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Listado</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Nuevo Tipo de Raza</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TipoRazaId" class="btn btn-secondary">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.TipoRazaId" class="btn btn-info">Detalle</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TipoRazaId" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

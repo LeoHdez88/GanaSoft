@@ -1,0 +1,54 @@
+@model IEnumerable<GanaSoft.Models.Hacienda>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Listado de Haciendas</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Nueva Hacienda</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Propietario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Propietario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.HaciendaId" class="btn btn-secondary">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.HaciendaId" class="btn btn-info">Detalle</a> |
+                    <a asp-action="Delete" asp-route-id="@item.HaciendaId" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

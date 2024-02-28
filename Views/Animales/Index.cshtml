@@ -1,0 +1,97 @@
+@model GanaSoft.Models.FiltroAnimalesViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Nuevo Animal</a>
+</p>
+<form asp-controller="Animales" asp-action="Index" method="get">
+    <p>
+        <select asp-for="AnimalHacienda" asp-items="Model.Haciendas">
+            <option value="">Todas las haciendas</option>
+        </select>
+
+        <select asp-for="AnimalRaza" asp-items="Model.TiposRazas">
+            <option value="">Todas las razas</option>
+        </select>
+
+        <select asp-for="AnimalEstado" asp-items="Model.Estados">
+            <option value="">Todos los estados</option>
+        </select>
+
+
+
+        Identificacion Animal: <input type="text" name="AnimalCodigo" />
+        <input type="submit" value="Filtrar" class="btn btn-primary" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Animales[0]!.Identificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animales[0]!.Color)
+            </th>
+            <th class="d-none">
+                @Html.DisplayNameFor(model => model.Animales[0]!.TipoRazaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animales[0]!.NombreRaza)
+            </th>
+            <th class="d-none">
+                @Html.DisplayNameFor(model => model.Animales[0]!.EstadoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animales[0]!.NombreEstado)
+            </th>
+            <th class="d-none">
+                @Html.DisplayNameFor(model => model.Animales[0]!.HaciendaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Animales[0]!.NombreHacienda)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Animales!)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Identificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td class="d-none">
+                    @Html.DisplayFor(modelItem => item.TipoRazaId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreRaza)
+                </td>
+                <td class="d-none">
+                    @Html.DisplayFor(modelItem => item.EstadoId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreEstado)
+                </td>
+                <td class="d-none">
+                    @Html.DisplayFor(modelItem => item.HaciendaId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreHacienda)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.AnimalId" class="btn btn-secondary">Editar </a> |
+                    <a asp-action="Details" asp-route-id="@item.AnimalId" class="btn btn-info">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.AnimalId" class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
